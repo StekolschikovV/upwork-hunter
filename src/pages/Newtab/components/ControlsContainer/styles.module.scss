@@ -1,0 +1,9 @@
+.controlsContainer {
+  padding: 20px;
+  text-align: right;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 20px;
+  justify-content: end;
+  align-items: center;
+}

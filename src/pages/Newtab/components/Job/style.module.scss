@@ -1,0 +1,16 @@
+.container {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+}
+
+.time {
+  background: orange;
+}
+
+.title {
+  background: yellow;
+}
+
+.controls {
+  background: grey;
+}

@@ -38,7 +38,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 var options = {
   mode: process.env.NODE_ENV || 'development',
   entry: {
-    newtab: path.join(__dirname, 'src', 'pages', 'Newtab', 'index.jsx'),
+    newtab: path.join(__dirname, 'src', 'pages', 'Newtab', 'index.tsx'),
   },
   chromeExtensionBoilerplate: {
     notHotReload: ['background', 'contentScript', 'devtools'],
