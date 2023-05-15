@@ -29,7 +29,7 @@ header {
     display: block;
     min-width: 0;
     max-width: 1200px;
-    width: 100%;
+    width: calc(100% - 40px);
     margin: auto;
     color: $color-green;
     padding: 20px;
@@ -44,10 +44,12 @@ header {
 .content {
   min-width: 0;
   max-width: 1200px;
-  width: 100%;
+  width: calc(100% - 40px);
   margin: auto;
   display: grid;
-  grid-template-columns: 250px calc(100% - 250px);
+  grid-template-columns: 200px calc(100% - 200px);
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .menu-container {
@@ -74,4 +76,26 @@ header {
   border: 1px solid $color-grey;
   border-radius: 15px;
   padding: 20px 0;
+}
+
+.controls-container {
+  padding: 20px;
+  text-align: right;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 10px;
+  justify-content: end;
+}
+
+button {
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 0;
+  color: white;
+  background: green;
+  cursor: pointer;
+  width: min-content;
+  white-space: nowrap;
+
 }

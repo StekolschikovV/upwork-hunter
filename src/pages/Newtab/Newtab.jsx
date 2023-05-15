@@ -1,24 +1,35 @@
 import React from 'react';
+import Menu from './components/Menu'
 import './Newtab.scss';
 
+const ControlsContainer = (props) => {
+  return <div className="controls-container">
+    {props.children}
+  </div>
+}
+const Btn = ({ title, onClick }) => {
+  return <button onClick={() => onClick(title)}>{title}</button>
+}
+
 const Newtab = () => {
-  return (<>
+  return (
     <div className="container">
       <header>
         <div className="header-title">UPWORK HUNTER</div>
       </header>
       <div className="content">
-        <ul className="menu-container">
-          <li className="menu-active-element">Feed</li>
-          <li>Cover Letter</li>
-          <li>ToDo</li>
-          <li>Notes</li>
-          <li>Settings</li>
-        </ul>
-        <div className="content-container">123</div>
+        <Menu />
+        <div className="content-container">
+          <ControlsContainer>
+            <Btn title="Add task" onClick={e => console.log('==', e)} />
+            <Btn title="Add task" onClick={e => console.log('==', e)} />
+            <Btn title="Add task" onClick={e => console.log('==', e)} />
+            <Btn title="Add task" onClick={e => console.log('==', e)} />
+          </ControlsContainer>
+        </div>
       </div>
     </div>
-  </>);
+  );
 };
 
 export default Newtab;
