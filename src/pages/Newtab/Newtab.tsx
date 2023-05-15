@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Menu from './components/Menu'
 import './Newtab.scss';
+import Btn from './components/Btn';
 
-const ControlsContainer = (props) => {
+const ControlsContainer = (props: { children: ReactNode }) => {
   return <div className="controls-container">
     {props.children}
   </div>
 }
-const Btn = ({ title, onClick }) => {
-  return <button onClick={() => onClick(title)}>{title}</button>
-}
+
 
 const Newtab = () => {
   return (
