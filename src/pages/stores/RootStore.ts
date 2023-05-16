@@ -1,5 +1,7 @@
 // import {AccountStore} from "stores/AccountStore";
 
+import { FeedStore } from "./FeedStore";
+
 // import {LangStore} from "stores/LangStore";
 // import {CategoryStore} from "stores/Category";
 // import {ToastStore} from "stores/ToastStore";
@@ -11,15 +13,12 @@ export type RootStoreHydration = {
 };
 
 export class RootStore {
-    // langStore: LangStore;
-    // categoryStore: CategoryStore;
-    // toastStore: ToastStore;
+
+    feedStore: FeedStore;
 
     constructor() {
         console.log('!!!');
-        // this.langStore = new LangStore(this);
-        // this.categoryStore = new CategoryStore(this);
-        // this.toastStore = new ToastStore(this);
+        this.feedStore = new FeedStore(this);
     }
 
     hydrateFromLocalStore = () => {

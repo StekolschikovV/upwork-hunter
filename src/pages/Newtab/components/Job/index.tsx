@@ -2,14 +2,7 @@ import React from "react"
 import styles from "./style.module.scss"
 import SVG from "../SVG"
 import Moment from 'react-moment';
-import moment from 'moment';
-
-export interface IJob {
-  time: Date,
-  title: string,
-  isFavorite: boolean,
-  isRemoved: boolean
-}
+import { IJob } from "../../type";
 
 interface IProps {
   job: IJob
@@ -17,11 +10,9 @@ interface IProps {
 
 const Job = ({ job }: IProps) => {
 
-
   const firstDate = new Date(job.time)
   const lastDate = new Date()
   const minAgo = Math.floor((lastDate.getTime() - firstDate.getTime()) / 60000)
-
 
   return <div className={styles.container}>
     <div className={styles.time}>
