@@ -1,4 +1,5 @@
 import React, { ReactNode, useState } from 'react';
+import 'moment-timezone';
 import Menu from './components/Menu'
 import './Newtab.scss';
 import Btn from './components/Btn';
@@ -12,13 +13,13 @@ const Newtab = () => {
   const [activePage, setActivePage] = useState("Feed")
   const jobs: IJob[] = [
     {
-      time: new Date('July 1, 1999, 12:22:20'),
-      title: "job 1",
+      time: new Date('Tue May 16 2023 04:50:00'),
+      title: "Job 1",
       isFavorite: false,
       isRemoved: false
     },
     {
-      time: new Date('July 1, 2023, 12:01:4'),
+      time: new Date('Tue May 16 2023 04:35:45'),
       title: "job 2",
       isFavorite: false,
       isRemoved: false

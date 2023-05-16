@@ -1,6 +1,8 @@
 import React from "react"
 import styles from "./style.module.scss"
 import SVG from "../SVG"
+import Moment from 'react-moment';
+import moment from 'moment';
 
 export interface IJob {
   time: Date,
@@ -15,22 +17,28 @@ interface IProps {
 
 const Job = ({ job }: IProps) => {
 
-  const time = () => {
-    const min = job.time.getMinutes() !== 0 ? job.time.getMinutes() : `0` + job.time.getMinutes()
-    const sec = job.time.getSeconds() !== 0 ? job.time.getSeconds() : `0` + job.time.getSeconds()
-    return <>{min}:{sec}</>
-  }
+
+  const firstDate = new Date(job.time)
+  const lastDate = new Date()
+  const minAgo = Math.floor((lastDate.getTime() - firstDate.getTime()) / 60000)
+
 
   return <div className={styles.container}>
     <div className={styles.time}>
-      {time()}
+      <div className={styles.timeIn}>
+        <Moment format="hh:mm">
+          {job.time}
+        </Moment>
+      </div>
+      <div className={styles.timeAgo}>
+        {minAgo}m ago
+      </div>
     </div>
     <div className={styles.title}>
       {job.title}
     </div>
     <div className={styles.controls}>
-      <SVG type="star" color="#D5E0D5" />
-      <SVG type="bucket" color="#D5E0D5" />
+      <SVG type="star" cursorPointer={true} color="#D5E0D5" hoveColor="#FDCD81" />
     </div>
   </div>
 

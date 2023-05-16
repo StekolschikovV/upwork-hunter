@@ -1,16 +1,42 @@
+@import "../../../../styles//const.scss";
+
 .container {
   display: grid;
   grid-template-columns: min-content 1fr min-content;
+  border-top: 1px solid $color-grey;
+  border-bottom: 1px solid $color-grey;
+  padding: 10px 30px;
+  margin-bottom: -1px;
+  gap: 30px;
 }
 
 .time {
-  background: orange;
+  // padding: 0 20px;
+  margin: auto;
+
+  .timeIn {
+    font-size: 18px;
+    white-space: nowrap;
+    color: $color-black;
+    height: 17px;
+  }
+
+  .timeAgo {
+    font-size: 12px;
+    white-space: nowrap;
+    color: $color-dark-grey;
+  }
 }
 
+
 .title {
-  background: yellow;
+  display: grid;
+  align-items: center;
+  font-size: 25px;
+
 }
 
 .controls {
-  background: grey;
+  display: grid;
+  align-items: center;
 }
