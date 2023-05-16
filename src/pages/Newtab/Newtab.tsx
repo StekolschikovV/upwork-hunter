@@ -39,7 +39,7 @@ const Newtab = () => {
               <ControlsContainer>
                 <SVG type='sort' onClickHandler={() => console.log("123")} cursorPointer={true} />
                 <LeftTime />
-                <Btn title="Add task" onClick={e => console.log('==', e)} />
+                <Btn title="Refresh" onClick={e => console.log('==', e)} />
               </ControlsContainer>
               {jobs.map(e => <Job job={e} key={e.time + e.title} />)}
             </>
