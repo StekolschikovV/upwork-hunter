@@ -10,7 +10,7 @@ interface IProps {
 
 const Job = ({ job }: IProps) => {
 
-  const firstDate = new Date(job.time)
+  const firstDate = new Date(job.date)
   const lastDate = new Date()
   const minAgo = Math.floor((lastDate.getTime() - firstDate.getTime()) / 60000)
 
@@ -18,11 +18,13 @@ const Job = ({ job }: IProps) => {
     <div className={styles.time}>
       <div className={styles.timeIn}>
         <Moment format="hh:mm">
-          {job.time}
+          {job.date}
         </Moment>
       </div>
       <div className={styles.timeAgo}>
-        {minAgo}m ago
+
+        {minAgo > 60 && <>over 60m</>}
+        {minAgo < 60 && <>{minAgo}m ago</>}
       </div>
     </div>
     <div className={styles.title}>

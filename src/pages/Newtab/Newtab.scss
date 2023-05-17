@@ -19,9 +19,13 @@ $color-yellow: #FDCD81;
   gap: 50px;
 }
 
+.full-container {
+  margin-bottom: 75px;
+}
+
 header {
   display: block;
-  min-width: 100vw;
+  // min-width: 100vw;
   border-bottom: 1px solid $color-grey;
   margin: auto;
 
@@ -77,5 +81,3 @@ header {
   border-radius: 15px;
   padding: 20px 0;
 }
-
-
