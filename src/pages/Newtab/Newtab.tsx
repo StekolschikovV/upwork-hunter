@@ -10,10 +10,12 @@ import Job from './components/Job';
 import { IJob } from './type';
 import { observer } from "mobx-react-lite";
 import { useRootStore } from '../providers/RootStoreProvider';
+import Feed from './screens/Feed';
+import Settings from './screens/Settings';
 
 const Newtab = observer(() => {
 
-  const [activePage, setActivePage] = useState("Feed")
+  const [activePage, setActivePage] = useState("Settings")
   const store = useRootStore()
 
   return (<>
@@ -26,16 +28,8 @@ const Newtab = observer(() => {
       <div className="content">
         <Menu onParentClickHandler={e => setActivePage(e)} />
         <div className="content-container">
-          {activePage === "Feed" &&
-            <>
-              <ControlsContainer>
-                {/* <SVG type='sort' onClickHandler={() => console.log("123")} cursorPointer={true} /> */}
-                <LeftTime />
-                <Btn title="Refresh" onClick={e => store.feedStore.getJobs()} />
-              </ControlsContainer>
-              {store.feedStore.feed.map(e => <Job job={e} key={e.date + e.title} />)}
-            </>
-          }
+          {activePage === "Feed" && <Feed />}
+          {activePage === "Settings" && <Settings />}
         </div>
       </div>
     </div>

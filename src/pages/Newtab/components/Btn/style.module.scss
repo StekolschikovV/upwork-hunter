@@ -1,10 +1,12 @@
+@import "../../../../styles/const.scss";
+
 .button {
   border-radius: 10px;
   padding: 10px 15px;
   font-size: 16px;
   border: 0;
   color: white;
-  background: green;
+  background: $color-green;
   cursor: pointer;
   width: min-content;
   white-space: nowrap;

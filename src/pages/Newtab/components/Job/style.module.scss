@@ -1,4 +1,4 @@
-@import "../../../../styles//const.scss";
+@import "../../../../styles/const.scss";
 
 .container {
   display: grid;
@@ -8,10 +8,10 @@
   padding: 8px 30px;
   margin-bottom: -1px;
   gap: 30px;
+  text-decoration: none;
 }
 
 .time {
-  // padding: 0 20px;
   margin: auto;
 
   .timeIn {
@@ -30,8 +30,7 @@
 
 
 .title {
-  // display: grid !important;
-  // align-items: center;
+  color: $color-black;
   font-size: 22px;
   width: 99%;
   display: inline-block;

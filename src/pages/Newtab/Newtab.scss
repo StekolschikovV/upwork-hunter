@@ -48,7 +48,7 @@ header {
 .content {
   min-width: 0;
   max-width: 1200px;
-  width: calc(100% - 40px);
+  width: 100vw;
   margin: auto;
   display: grid;
   grid-template-columns: 200px calc(100% - 200px);
@@ -77,6 +77,7 @@ header {
 }
 
 .content-container {
+  display: grid;
   border: 1px solid $color-grey;
   border-radius: 15px;
   padding: 20px 0;

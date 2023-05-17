@@ -14,7 +14,7 @@ const Job = ({ job }: IProps) => {
   const lastDate = new Date()
   const minAgo = Math.floor((lastDate.getTime() - firstDate.getTime()) / 60000)
 
-  return <div className={styles.container}>
+  return <a className={styles.container} href={job.link}>
     <div className={styles.time}>
       <div className={styles.timeIn}>
         <Moment format="hh:mm">
@@ -32,7 +32,7 @@ const Job = ({ job }: IProps) => {
     <div className={styles.controls}>
       {/* <SVG type="star" cursorPointer={true} color="#D5E0D5" hoveColor="#FDCD81" /> */}
     </div>
-  </div>
+  </a>
 
 }
 
