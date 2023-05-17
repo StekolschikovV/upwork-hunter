@@ -15,21 +15,6 @@ const Newtab = observer(() => {
 
   const [activePage, setActivePage] = useState("Feed")
   const store = useRootStore()
-  console.log(JSON.parse(JSON.stringify(store.feedStore.feed)))
-  const jobs: IJob[] = [
-    // {
-    //   time: new Date('Tue May 16 2023 04:50:00'),
-    //   title: "Job 1",
-    //   isFavorite: false,
-    //   isRemoved: false
-    // },
-    // {
-    //   time: new Date('Tue May 16 2023 04:35:45'),
-    //   title: "job 2",
-    //   isFavorite: false,
-    //   isRemoved: false
-    // }
-  ]
 
   return (<>
     <div className="full-container">
@@ -44,9 +29,9 @@ const Newtab = observer(() => {
           {activePage === "Feed" &&
             <>
               <ControlsContainer>
-                <SVG type='sort' onClickHandler={() => console.log("123")} cursorPointer={true} />
+                {/* <SVG type='sort' onClickHandler={() => console.log("123")} cursorPointer={true} /> */}
                 <LeftTime />
-                <Btn title="Refresh" onClick={e => console.log('==', e)} />
+                <Btn title="Refresh" onClick={e => store.feedStore.getJobs()} />
               </ControlsContainer>
               {store.feedStore.feed.map(e => <Job job={e} key={e.date + e.title} />)}
             </>

@@ -22,7 +22,6 @@ const Job = ({ job }: IProps) => {
         </Moment>
       </div>
       <div className={styles.timeAgo}>
-
         {minAgo > 60 && <>over 60m</>}
         {minAgo < 60 && <>{minAgo}m ago</>}
       </div>
@@ -31,7 +30,7 @@ const Job = ({ job }: IProps) => {
       {job.title}
     </div>
     <div className={styles.controls}>
-      <SVG type="star" cursorPointer={true} color="#D5E0D5" hoveColor="#FDCD81" />
+      {/* <SVG type="star" cursorPointer={true} color="#D5E0D5" hoveColor="#FDCD81" /> */}
     </div>
   </div>
 
