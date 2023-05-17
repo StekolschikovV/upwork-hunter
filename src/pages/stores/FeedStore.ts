@@ -1,6 +1,10 @@
-import { makeAutoObservable } from "mobx";
+import { keys, makeAutoObservable } from "mobx";
+const axios = require('axios');
 import { RootStore } from "./RootStore";
 import { IJob } from "../Newtab/type";
+import xml2jsonES from 'xml2json-es';
+
+
 
 export class FeedStore {
 
@@ -14,22 +18,55 @@ export class FeedStore {
     constructor(root: RootStore) {
         this.root = root;
         makeAutoObservable(this)
-        this.hydrate()
         this.getJobs()
     }
 
-    getJobs = () => {
-        console.log("getJobs")
-        this.feedList.forEach(feedURL => {
-            fetch(feedURL)
-                .then(response => response.text())
-                .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
-                .then(data => console.log(data))
-        })
-    }
-
-
-    hydrate = () => {
+    getJobs = async (): Promise<IJob[]> => {
+        let data = await Promise.all(
+            this.feedList.map(e =>
+                fetch(e).then(
+                    response =>
+                        response.text()
+                            .then(text => new window.DOMParser().parseFromString(text, "text/html"))
+                            .then(xml => xml2jsonES(xml, false))
+                            .then((res: any) => {
+                                try {
+                                    return res.content[1].content[1].content[0].content[0].content.filter((e: any) => e.type === "ITEM")
+                                } catch (e) {
+                                    return []
+                                }
+                            })
+                            .then((items: any) => items?.map((e: any) => e?.content))
+                            .then((items: any) => {
+                                return items?.map((e: any) => {
+                                    let result = {}
+                                    e.forEach((att: any) => {
+                                        const type = att?.type
+                                        const content = att?.content
+                                        if (type && content) {
+                                            // @ts-ignore
+                                            result[type?.toLowerCase()] = content[0]
+                                        }
+                                        // @ts-ignore
+                                        result.row = att
+                                    });
+                                    return result
+                                })
+                            })
+                            .then((items: any) => {
+                                return items.map((e: any) => {
+                                    return {
+                                        title: e?.title,
+                                        date: e?.pubdate,
+                                        link: e?.guid
+                                    }
+                                })
+                            })
+                )))
+        // @ts-ignore
+        const result = data?.flat()?.sort((a: any, b: any) => Date.parse(new Date(a?.date)) - Date.parse(new Date(b?.date)));
+        this.feed = result
+        return result
     }
 
 }

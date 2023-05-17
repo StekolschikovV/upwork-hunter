@@ -1,6 +1,5 @@
 export interface IJob {
-  time: Date,
   title: string,
-  isFavorite: boolean,
-  isRemoved: boolean
+  date: string,
+  link: string
 }
