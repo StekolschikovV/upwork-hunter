@@ -81,6 +81,9 @@ const SVG = ({ type, size = "20", color = "#001E00", hoveColor = "#001E00", onCl
       width={`${size}px`}
       height={`${size}px`}
       viewBox="0 0 48 48"
+      style={{
+        cursor: cursorPointer ? "pointer" : ""
+      }}
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
       <rect width="48" height="48" fill="white" fillOpacity="0.01" />

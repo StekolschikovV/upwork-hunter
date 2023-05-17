@@ -35,10 +35,12 @@ const Settings = observer(() => {
     <div className={styles.lineFeeds}>
       <div className={styles.lineTitle}>Feeds:</div>
       <div className={styles.feedsList}>
-        <div className={styles.feedsLine}>
-          <div className={styles.feedsText}>Text</div>
-          <SVG type="close" size="15" />
-        </div>
+        {store.feedStore.feedList.map(f => {
+          return <div className={styles.feedsLine}>
+            <div className={styles.feedsText}>{f}</div>
+            <SVG type="close" size="15" cursorPointer={true} />
+          </div>
+        })}
         <div className={styles.feedsLine}>
           <input
             placeholder="Insert RSS link"

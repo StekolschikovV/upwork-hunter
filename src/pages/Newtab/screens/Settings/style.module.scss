@@ -33,6 +33,7 @@
   display: grid;
   grid-template-columns: 1fr min-content;
   justify-content: space-between;
+  gap: 10px;
   align-items: center;
   border-bottom: 1px solid $color-grey;
   padding: 5px 10px;
@@ -41,6 +42,10 @@
 
 .feedsText {
   font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
 }
 
 .feedsInput {
