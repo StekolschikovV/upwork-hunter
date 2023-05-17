@@ -25,7 +25,6 @@ export class FeedStore {
             () => [this.feed, this.refreshTime, this.showJobs, this.showJobs, this.feedList],
             () => {
                 this.save()
-                // this.getJobs()
             }
         )
     }
@@ -42,7 +41,6 @@ export class FeedStore {
     }
 
     getJobs = async (): Promise<IJob[]> => {
-        console.log('+++', this.feedList, "+++");
         let data = await Promise.all(
             this.feedList.map(e =>
                 fetch(e)
@@ -93,7 +91,10 @@ export class FeedStore {
 
         )
         // @ts-ignore
-        const result = data?.flat()?.sort((a: any, b: any) => Date.parse(new Date(a?.date)) - Date.parse(new Date(b?.date))).reverse()
+        let result = data?.flat()?.sort((a: any, b: any) => Date.parse(new Date(a?.date)) - Date.parse(new Date(b?.date))).reverse()
+        // remove duplicates 
+        // @ts-ignore
+        result = Array.from(new Set(result.map(JSON.stringify)), JSON.parse)
         runInAction(() => {
             this.feed = result
         })
@@ -101,8 +102,10 @@ export class FeedStore {
     }
 
     addedFeed = (url: string) => {
-        this.feedList.push(url)
-        this.getJobs()
+        if ((url?.trim())?.length > 0) {
+            this.feedList.push(url)
+            this.getJobs()
+        }
     }
 
     removeFeed = (url: string) => {
@@ -111,7 +114,6 @@ export class FeedStore {
     }
 
     private save = () => {
-        console.log('save', JSON.stringify(this.feedList));
         localStorage.setItem("refreshTime", `${this.refreshTime}`)
         localStorage.setItem("refreshTimer", `${this.refreshTimer}`)
         localStorage.setItem("showJobs", `${this.showJobs}`)
@@ -119,7 +121,6 @@ export class FeedStore {
     }
 
     private load = () => {
-        console.log('!load', localStorage.getItem("feedList"));
         this.refreshTime = +`${localStorage.getItem("refreshTime")}` || 30
         this.refreshTimer = +`${localStorage.getItem("refreshTimer")}` || 30
         this.showJobs = +`${localStorage.getItem("showJobs")}` || 10
@@ -129,4 +130,11 @@ export class FeedStore {
         }
         this.getJobs()
     }
+
+    private removeDuplicates = (arr: any[] = []) => {
+        const map = new Map();
+        arr.forEach((x) => map.set(JSON.stringify(x), x));
+        arr = [...map.values()];
+        return arr;
+    };
 }
