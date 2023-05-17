@@ -22,9 +22,10 @@ export class FeedStore {
         this.refresh()
         this.load()
         reaction(
-            () => [this.feed, this.refreshTime, this.refreshTimer, this.showJobs, this.feedList],
+            () => [this.feed, this.refreshTime, this.showJobs, this.showJobs, this.feedList],
             () => {
                 this.save()
+                // this.getJobs()
             }
         )
     }
@@ -91,18 +92,17 @@ export class FeedStore {
             )
 
         )
-
         // @ts-ignore
         const result = data?.flat()?.sort((a: any, b: any) => Date.parse(new Date(a?.date)) - Date.parse(new Date(b?.date))).reverse()
         runInAction(() => {
             this.feed = result
         })
-
         return result
     }
 
     addedFeed = (url: string) => {
         this.feedList.push(url)
+        this.getJobs()
     }
 
     removeFeed = (url: string) => {
@@ -111,6 +111,7 @@ export class FeedStore {
     }
 
     private save = () => {
+        console.log('save', JSON.stringify(this.feedList));
         localStorage.setItem("refreshTime", `${this.refreshTime}`)
         localStorage.setItem("refreshTimer", `${this.refreshTimer}`)
         localStorage.setItem("showJobs", `${this.showJobs}`)
@@ -118,13 +119,14 @@ export class FeedStore {
     }
 
     private load = () => {
+        console.log('!load', localStorage.getItem("feedList"));
         this.refreshTime = +`${localStorage.getItem("refreshTime")}` || 30
         this.refreshTimer = +`${localStorage.getItem("refreshTimer")}` || 30
         this.showJobs = +`${localStorage.getItem("showJobs")}` || 10
         const feedListStr = localStorage.getItem("feedList")
         if (feedListStr) {
-            console.log('!!!', JSON.parse(feedListStr));
             this.feedList = JSON.parse(feedListStr)
         }
+        this.getJobs()
     }
 }
