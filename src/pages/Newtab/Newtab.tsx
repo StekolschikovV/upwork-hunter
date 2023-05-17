@@ -15,8 +15,7 @@ import Settings from './screens/Settings';
 
 const Newtab = observer(() => {
 
-  const [activePage, setActivePage] = useState("Settings")
-  const store = useRootStore()
+  const [activePage, setActivePage] = useState("Feed")
 
   return (<>
     <div className="full-container">

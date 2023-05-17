@@ -1,4 +1,4 @@
-import { keys, makeAutoObservable } from "mobx";
+import { action, keys, makeAutoObservable, makeObservable, observable, reaction } from "mobx";
 const axios = require('axios');
 import { RootStore } from "./RootStore";
 import { IJob } from "../Newtab/type";
@@ -23,6 +23,13 @@ export class FeedStore {
         makeAutoObservable(this)
         this.getJobs()
         this.refresh()
+        this.load()
+        reaction(
+            () => [this.feed, this.refreshTime, this.refreshTimer, this.showJobs, this.feedList],
+            () => {
+                this.save()
+            }
+        )
     }
 
     refresh = () => {
@@ -84,4 +91,20 @@ export class FeedStore {
         return result
     }
 
+    private save = () => {
+        localStorage.setItem("refreshTime", `${this.refreshTime}`)
+        localStorage.setItem("refreshTimer", `${this.refreshTimer}`)
+        localStorage.setItem("showJobs", `${this.showJobs}`)
+        localStorage.setItem("feedList", `${JSON.stringify(this.feedList)}`)
+    }
+
+    private load = () => {
+        this.refreshTime = +`${localStorage.getItem("refreshTime")}` || 30
+        this.refreshTimer = +`${localStorage.getItem("refreshTimer")}` || 30
+        this.showJobs = +`${localStorage.getItem("showJobs")}` || 10
+        const feedListStr = localStorage.getItem("feedList")
+        if (feedListStr) {
+            this.feedList = JSON.parse(feedListStr)
+        }
+    }
 }

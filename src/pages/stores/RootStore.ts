@@ -17,16 +17,7 @@ export class RootStore {
     feedStore: FeedStore;
 
     constructor() {
-        console.log('!!!');
         this.feedStore = new FeedStore(this);
     }
-
-    hydrateFromLocalStore = () => {
-        // this.langStore.hydrateFromLocalStore()
-        // this.categoryStore.hydrateFromLocalStore()
-        // this.toastStore.hydrateFromLocalStore()
-    }
-
-    hydrate(data: RootStoreHydration) {
-    }
+    
 }
