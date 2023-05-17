@@ -5,7 +5,7 @@
   grid-template-columns: min-content 1fr min-content;
   border-top: 1px solid $color-grey;
   border-bottom: 1px solid $color-grey;
-  padding: 10px 30px;
+  padding: 8px 30px;
   margin-bottom: -1px;
   gap: 30px;
 }
@@ -15,10 +15,10 @@
   margin: auto;
 
   .timeIn {
-    font-size: 18px;
+    font-size: 20px;
     white-space: nowrap;
     color: $color-black;
-    height: 17px;
+    height: 20px;
   }
 
   .timeAgo {
@@ -30,9 +30,15 @@
 
 
 .title {
-  display: grid;
-  align-items: center;
-  font-size: 25px;
+  // display: grid !important;
+  // align-items: center;
+  font-size: 22px;
+  width: 99%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  line-height: 2;
 
 }
 
