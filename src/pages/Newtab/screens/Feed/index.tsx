@@ -16,7 +16,7 @@ const Feed = observer(() => {
       <LeftTime />
       <Btn title="Refresh" onClick={e => store.feedStore.getJobs()} />
     </ControlsContainer>
-    {store.feedStore.feed.splice(0, store.feedStore.showJobs).map((e, i) => <Job job={e} key={e.date + e.title} />)}
+    {store.feedStore.feed.splice(0, store.feedStore.showJobs).map((e, i) => <Job job={e} key={e.date + e.title + i} />)}
   </>);
 })
 

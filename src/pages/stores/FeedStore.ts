@@ -91,6 +91,15 @@ export class FeedStore {
         return result
     }
 
+    addedFeed = (url: string) => {
+        this.feedList = [...this.feedList, url]
+    }
+
+    removeFeed = (url: string) => {
+        console.log(url, this.feedList);
+        this.feedList = this.feedList.filter(e => e !== url)
+    }
+
     private save = () => {
         localStorage.setItem("refreshTime", `${this.refreshTime}`)
         localStorage.setItem("refreshTimer", `${this.refreshTimer}`)

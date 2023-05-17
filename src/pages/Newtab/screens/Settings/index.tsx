@@ -7,6 +7,7 @@ import SVG from "../../components/SVG";
 
 const Settings = observer(() => {
 
+  const [title, setTitle] = useState("")
   const store = useRootStore()
 
   return (<>
@@ -35,18 +36,26 @@ const Settings = observer(() => {
     <div className={styles.lineFeeds}>
       <div className={styles.lineTitle}>Feeds:</div>
       <div className={styles.feedsList}>
-        {store.feedStore.feedList.map(f => {
-          return <div className={styles.feedsLine}>
+        {store.feedStore.feedList.map((f, i) => {
+          return <div key={f + i} className={styles.feedsLine}>
             <div className={styles.feedsText}>{f}</div>
-            <SVG type="close" size="15" cursorPointer={true} />
+            <SVG type="close" size="15" cursorPointer={true}
+              onClickHandler={() => {
+                store.feedStore.removeFeed(f)
+              }} />
           </div>
         })}
         <div className={styles.feedsLine}>
           <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             placeholder="Insert RSS link"
             className={styles.feedsInput}
             type="text" />
-          <Btn title={"Add"} type="small" onClick={() => { }} />
+          <Btn title={"Add"} type="small" onClick={() => {
+            store.feedStore.addedFeed(title)
+            setTitle("")
+          }} />
         </div>
       </div>
     </div>

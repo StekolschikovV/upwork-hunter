@@ -78,6 +78,7 @@ const SVG = ({ type, size = "20", color = "#001E00", hoveColor = "#001E00", onCl
 
   else if (type === "close")
     return <svg
+      onClick={onClickHandler}
       width={`${size}px`}
       height={`${size}px`}
       viewBox="0 0 48 48"
