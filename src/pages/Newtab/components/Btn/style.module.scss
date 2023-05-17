@@ -2,12 +2,26 @@
 
 .button {
   border-radius: 10px;
-  padding: 10px 15px;
-  font-size: 16px;
+
   border: 0;
   color: white;
   background: $color-green;
   cursor: pointer;
   width: min-content;
   white-space: nowrap;
+}
+
+.small {
+  padding: 8px 15px;
+  font-size: 14px;
+}
+
+.normal {
+  padding: 10px 15px;
+  font-size: 16px;
+}
+
+.big {
+  padding: 10px 15px;
+  font-size: 16px;
 }

@@ -19,3 +19,36 @@
   width: 80px;
   font-size: 16px;
 }
+
+
+.lineFeeds {
+  padding: 5px 20px;
+}
+
+.lineTitle {}
+
+.feedsList {}
+
+.feedsLine {
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $color-grey;
+  padding: 5px 10px;
+  height: 30px;
+}
+
+.feedsText {
+  font-size: 14px;
+}
+
+.feedsInput {
+  border: 0;
+
+  &:hover,
+  &:focus {
+    border: 0;
+    outline: none;
+  }
+}

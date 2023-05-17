@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 
 interface IProps {
-  type: "sort" | "star" | "bucket",
+  type: "sort" | "star" | "bucket" | "close",
   size?: string,
   color?: string,
   hoveColor?: string,
@@ -19,8 +19,8 @@ const SVG = ({ type, size = "20", color = "#001E00", hoveColor = "#001E00", onCl
       onClick={onClickHandler}
       onMouseEnter={() => setHoverStatus(true)}
       onMouseLeave={() => setHoverStatus(false)}
-      width={size}
-      height={size}
+      width={`${size}px`}
+      height={`${size}px`}
       style={{
         cursor: cursorPointer ? "pointer" : ""
       }}
@@ -38,8 +38,8 @@ const SVG = ({ type, size = "20", color = "#001E00", hoveColor = "#001E00", onCl
       onClick={onClickHandler}
       onMouseEnter={() => setHoverStatus(true)}
       onMouseLeave={() => setHoverStatus(false)}
-      width={size}
-      height={size}
+      width={`${size}px`}
+      height={`${size}px`}
       style={{
         cursor: cursorPointer ? "pointer" : ""
       }}
@@ -61,8 +61,8 @@ const SVG = ({ type, size = "20", color = "#001E00", hoveColor = "#001E00", onCl
   else if (type === "bucket")
     return <svg
       onClick={onClickHandler}
-      width={size}
-      height={size}
+      width={`${size}px`}
+      height={`${size}px`}
       style={{
         cursor: cursorPointer ? "pointer" : ""
       }}
@@ -75,6 +75,18 @@ const SVG = ({ type, size = "20", color = "#001E00", hoveColor = "#001E00", onCl
         d="M6.25 2.5C6.25 1.11929 7.36929 0 8.75 0H11.25C12.6307 0 13.75 1.11929 13.75 2.5V3.75H17.5C18.1904 3.75 18.75 4.30965 18.75 5C18.75 5.69035 18.1904 6.25 17.5 6.25H17.3078L16.4275 17.6917C16.3274 18.9943 15.2412 20 13.9349 20H6.06507C4.75874 20 3.67264 18.9943 3.57244 17.6917L2.69231 6.25H2.5C1.80965 6.25 1.25 5.69035 1.25 5C1.25 4.30965 1.80965 3.75 2.5 3.75H6.25V2.5ZM8.75 3.75H11.25V2.5H8.75V3.75ZM5.19969 6.25L6.06507 17.5H13.9349L14.8003 6.25H5.19969Z"
         fill={c} />
     </svg>
+
+  else if (type === "close")
+    return <svg
+      width={`${size}px`}
+      height={`${size}px`}
+      viewBox="0 0 48 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" fill="white" fillOpacity="0.01" />
+      <path d="M8 8L40 40" stroke={c} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M8 40L40 8" stroke={c} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg >
 
   else
     return null

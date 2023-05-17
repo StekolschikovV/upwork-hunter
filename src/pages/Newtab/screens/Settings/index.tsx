@@ -2,6 +2,8 @@ import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
 import { useRootStore } from "../../../providers/RootStoreProvider";
 import styles from "./style.module.scss"
+import Btn from "../../components/Btn";
+import SVG from "../../components/SVG";
 
 const Settings = observer(() => {
 
@@ -28,8 +30,23 @@ const Settings = observer(() => {
         value={store.feedStore.showJobs}
         type="number"
         min="1"
-        onChange={e => store.feedStore.showJobs = +e.target.value}
-      />
+        onChange={e => store.feedStore.showJobs = +e.target.value} />
+    </div>
+    <div className={styles.lineFeeds}>
+      <div className={styles.lineTitle}>Feeds:</div>
+      <div className={styles.feedsList}>
+        <div className={styles.feedsLine}>
+          <div className={styles.feedsText}>Text</div>
+          <SVG type="close" size="15" />
+        </div>
+        <div className={styles.feedsLine}>
+          <input
+            placeholder="Insert RSS link"
+            className={styles.feedsInput}
+            type="text" />
+          <Btn title={"Add"} type="small" onClick={() => { }} />
+        </div>
+      </div>
     </div>
   </>);
 })

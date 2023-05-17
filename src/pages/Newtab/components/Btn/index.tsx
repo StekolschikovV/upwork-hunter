@@ -1,10 +1,16 @@
 import React from "react"
 import styles from "./style.module.scss"
 
-const Btn = ({ title, onClick }: { title: string, onClick: (title: string) => void }) => {
+interface IProps {
+  title: string, 
+  onClick: (title: string) => void
+  type?: "small" | "normal" | "big"
+}
+
+const Btn = ({ title, onClick, type = "normal" }: IProps) => {
 
   return <button
-    className={styles.button}
+    className={`${styles.button} ${styles[type]}`}
     onClick={() => onClick(title)}>{title}</button>
     
 }
