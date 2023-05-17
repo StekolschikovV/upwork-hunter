@@ -97,6 +97,7 @@ export class FeedStore {
         result = Array.from(new Set(result.map(JSON.stringify)), JSON.parse)
         runInAction(() => {
             this.feed = result
+            this.save()
         })
         return result
     }
@@ -114,10 +115,13 @@ export class FeedStore {
     }
 
     private save = () => {
+        console.log('!!');
         localStorage.setItem("refreshTime", `${this.refreshTime}`)
         localStorage.setItem("refreshTimer", `${this.refreshTimer}`)
         localStorage.setItem("showJobs", `${this.showJobs}`)
         localStorage.setItem("feedList", `${JSON.stringify(this.feedList)}`)
+        localStorage.setItem("feed", `${JSON.stringify(this.feed.slice(0, 10))}`)
+
     }
 
     private load = () => {
@@ -128,6 +132,10 @@ export class FeedStore {
         if (feedListStr) {
             this.feedList = JSON.parse(feedListStr)
         }
+        const feedStr = localStorage.getItem("feedList")
+        if (feedStr) {
+            this.feed = JSON.parse(feedStr)
+        }
         this.getJobs()
     }
 
@@ -136,5 +144,6 @@ export class FeedStore {
         arr.forEach((x) => map.set(JSON.stringify(x), x));
         arr = [...map.values()];
         return arr;
-    };
+    }
+
 }
