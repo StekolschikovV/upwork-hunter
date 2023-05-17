@@ -21,6 +21,16 @@ const Settings = observer(() => {
         }}
       />
     </div>
+    <div className={styles.line}>
+      <div className={styles.lineTitle}>Number of job offers displayed</div>
+      <input
+        className={styles.lineInput}
+        value={store.feedStore.showJobs}
+        type="number"
+        min="1"
+        onChange={e => store.feedStore.showJobs = +e.target.value}
+      />
+    </div>
   </>);
 })
 
