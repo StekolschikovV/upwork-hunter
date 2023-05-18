@@ -1,0 +1,27 @@
+@import "../../../../styles/const.scss";
+
+
+.tabs {
+  list-style: none;
+  padding: 0 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  li {
+    font-size: 18px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.3s;
+    &:hover {
+      color: $color-green;
+    }
+  }
+}
+
+li.selectedTab {
+  color: $color-green;
+  border-bottom: 1px solid $color-green;
+}

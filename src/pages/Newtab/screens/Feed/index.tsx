@@ -6,6 +6,7 @@ import ControlsContainer from "../../components/ControlsContainer";
 import Job from "../../components/Job";
 import LeftTime from "../../components/LeftTime";
 import styles from "./style.module.scss"
+
 const Feed = observer(() => {
 
   const store = useRootStore()

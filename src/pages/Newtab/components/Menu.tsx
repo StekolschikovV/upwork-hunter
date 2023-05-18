@@ -7,7 +7,7 @@ interface IProps {
 const Menu = ({ onParentClickHandler }: IProps) => {
 
   // const elements = ["Feed", "Cover Letter", "ToDo", "Notes", "Settings"]
-  const elements = ["Feed", "Settings"]
+  const elements = ["Feed", "Settings", "Cover Letter"]
   const [active, setActive] = useState("Feed")
 
   const onClickHandler = (title: string) => {

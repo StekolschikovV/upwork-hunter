@@ -1,21 +1,15 @@
-import React, { ReactNode, useState } from 'react';
-import 'moment-timezone';
-import Menu from './components/Menu'
-import './Newtab.scss';
-import Btn from './components/Btn';
-import ControlsContainer from './components/ControlsContainer';
-import LeftTime from './components/LeftTime';
-import SVG from './components/SVG';
-import Job from './components/Job';
-import { IJob } from './type';
 import { observer } from "mobx-react-lite";
-import { useRootStore } from '../providers/RootStoreProvider';
+import 'moment-timezone';
+import React, { useState } from 'react';
+import './Newtab.scss';
+import Menu from './components/Menu';
+import CoverLetter from './screens/CoverLetter';
 import Feed from './screens/Feed';
 import Settings from './screens/Settings';
 
 const Newtab = observer(() => {
 
-  const [activePage, setActivePage] = useState("Feed")
+  const [activePage, setActivePage] = useState("Cover Letter")
 
   return (<>
     <div className="full-container">
@@ -28,6 +22,7 @@ const Newtab = observer(() => {
         <Menu onParentClickHandler={e => setActivePage(e)} />
         <div className="content-container">
           {activePage === "Feed" && <Feed />}
+          {activePage === "Cover Letter" && <CoverLetter />}
           {activePage === "Settings" && <Settings />}
         </div>
       </div>
