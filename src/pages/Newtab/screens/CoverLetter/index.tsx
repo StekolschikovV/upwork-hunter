@@ -8,7 +8,7 @@ import styles from "./style.module.scss";
 const CoverLetter = observer(() => {
 
   const store = useRootStore()
-  const [activeTab, setActiveTab] = useState("Designer Cover Letter")
+  const [activeTab, setActiveTab] = useState("")
   const [title, setTitle] = useState("")
   const [text, setText] = useState("")
 
@@ -17,15 +17,36 @@ const CoverLetter = observer(() => {
       .coverLetterStore
       .coverLetters
       .find(e => e.title === activeTab)
-    if (targetCL) {
-      setTitle(targetCL?.title)
-      setText(targetCL?.text)
-    }
+    setTitle(targetCL?.title || "")
+    setText(targetCL?.text || "")
   }, [activeTab])
+
+  const onChangeHandler = () => {
+    const targetCL = store
+      .coverLetterStore
+      .coverLetters
+      .find(e => e.title === activeTab)
+    if (targetCL) {
+      store.coverLetterStore.change(targetCL?.title, targetCL.text, title, text)
+    }
+  }
+
+  const onDeleteHandler = () => {
+    const targetCL = store
+      .coverLetterStore
+      .coverLetters
+      .find(e => e.title === activeTab)
+    if (targetCL) {
+      store.coverLetterStore.delete(targetCL?.title, targetCL.text)
+      setTitle("")
+      setText("")
+      setActiveTab("")
+    }
+  }
 
   return <div className={styles.container}>
     <ul className={styles.tabs}>
-      <li onClick={() => setActiveTab("")}>+</li>
+      <li className={activeTab === "" ? styles.selectedTab : null} onClick={() => setActiveTab("")}>+</li>
       {
         store.coverLetterStore.coverLetters.map(
           cl =>
@@ -43,15 +64,13 @@ const CoverLetter = observer(() => {
       <textarea value={text} onChange={e => setText(e.target.value)} placeholder="Text" rows={30} />
     </div>
     <ControlsContainer>
-      <Btn title="Create" onClick={e => {
+      {!activeTab && <Btn title="Create" onClick={e => {
         store.coverLetterStore.add(title, text)
         setTitle("")
         setText("")
-      }} />
-      <Btn title="Save" onClick={e => {
-        // store.coverLetterStore.change()
-      }} />
-      <Btn title="Delete" color="red" onClick={e => { }} />
+      }} />}
+      {!!activeTab && <Btn title="Save" onClick={onChangeHandler} />}
+      {!!activeTab && <Btn title="Delete" color="red" onClick={() => onDeleteHandler()} />}
     </ControlsContainer>
   </div>
 

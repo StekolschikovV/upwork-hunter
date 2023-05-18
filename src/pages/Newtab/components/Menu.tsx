@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 interface IProps {
   onParentClickHandler: (title: string) => void
@@ -7,7 +7,7 @@ interface IProps {
 const Menu = ({ onParentClickHandler }: IProps) => {
 
   // const elements = ["Feed", "Cover Letter", "ToDo", "Notes", "Settings"]
-  const elements = ["Feed", "Settings", "Cover Letter"]
+  const elements = ["Feed", "Cover Letter", "Settings"]
   const [active, setActive] = useState("Feed")
 
   const onClickHandler = (title: string) => {

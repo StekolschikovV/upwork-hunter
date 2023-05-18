@@ -1,37 +1,37 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, reaction } from "mobx";
 import { RootStore } from "./RootStore";
 
 export class CoverLetterStore {
 
   root: RootStore;
-  coverLetters: { title: string, text: string }[] = [
-    {
-      title: "Designer Cover Letter",
-      text: "text"
-    },
-    {
-      title: "Programmer Cover Letter",
-      text: "text"
-    }
-  ]
+  coverLetters: { title: string, text: string }[] = []
 
   constructor(root: RootStore) {
     this.root = root;
     makeAutoObservable(this)
+    this.load()
+    reaction(
+      () => [this.coverLetters],
+      () => {
+        this.save()
+      }
+    )
   }
 
   add = (title: string, text: string) => {
     this.coverLetters.push({ title, text })
+    this.save()
   }
 
-  remove = (title: string, text: string) => {
-    const newData = this.coverLetters.filter(e => e.title !== title && e.text !== text)
+  delete = (title: string, text: string) => {
+    const newData = this.coverLetters.filter(e => e.title !== title)
     this.coverLetters = newData
+    this.save()
   }
 
   change = (title: string, text: string, newTitle: string, newText: string) => {
     const newData = this.coverLetters.map(e => {
-      if(e.title === title && e.text === text){
+      if (e.title === title && e.text === text) {
         return {
           title: newTitle,
           text: newText
@@ -41,6 +41,18 @@ export class CoverLetterStore {
       }
     })
     this.coverLetters = newData
+    this.save()
+  }
+
+  private save = () => {
+    localStorage.setItem("coverLetters", `${JSON.stringify(this.coverLetters)}`)
+  }
+
+  private load = () => {
+    const coverLettersStr = localStorage.getItem("coverLetters")
+    if (coverLettersStr) {
+      this.coverLetters = JSON.parse(coverLettersStr)
+    }
   }
 
 

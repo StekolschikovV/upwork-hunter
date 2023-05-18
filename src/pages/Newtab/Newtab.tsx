@@ -9,7 +9,7 @@ import Settings from './screens/Settings';
 
 const Newtab = observer(() => {
 
-  const [activePage, setActivePage] = useState("Cover Letter")
+  const [activePage, setActivePage] = useState("Feed")
 
   return (<>
     <div className="full-container">

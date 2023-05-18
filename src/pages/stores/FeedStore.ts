@@ -1,8 +1,8 @@
-import { action, keys, makeAutoObservable, makeObservable, observable, reaction, runInAction } from "mobx";
-const axios = require('axios');
-import { RootStore } from "./RootStore";
-import { IJob } from "../Newtab/type";
+import { makeAutoObservable, reaction, runInAction } from "mobx";
 import xml2jsonES from 'xml2json-es';
+import { IJob } from "../Newtab/type";
+import { RootStore } from "./RootStore";
+const axios = require('axios');
 
 
 
