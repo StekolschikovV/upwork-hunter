@@ -1,16 +1,16 @@
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
 import { useRootStore } from "../../../providers/RootStoreProvider";
-import styles from "./style.module.scss"
 import Btn from "../../components/Btn";
 import SVG from "../../components/SVG";
+import styles from "./style.module.scss";
 
 const Settings = observer(() => {
 
   const [title, setTitle] = useState("")
   const store = useRootStore()
 
-  return (<>
+  return (<div className={styles.container}>
     <div className={styles.line}>
       <div className={styles.lineTitle}>Check feed every second</div>
       <input
@@ -59,7 +59,7 @@ const Settings = observer(() => {
         </div>
       </div>
     </div>
-  </>);
+  </div>);
 })
 
 export default Settings;

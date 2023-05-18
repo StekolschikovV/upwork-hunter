@@ -1,10 +1,14 @@
-import React from "react"
-import { ReactNode } from "react"
+import React, { ReactNode } from "react"
 import styles from "./styles.module.scss"
 
-const ControlsContainer = (props: { children: ReactNode }) => {
-  return <div className={styles.controlsContainer}>
-    {props.children}
+interface IProps {
+  children: ReactNode,
+  padding?: boolean
+}
+
+const ControlsContainer = ({ children, padding = false }: IProps) => {
+  return <div className={`${styles.controlsContainer} ${padding ? styles.padding : null}`}>
+    {children}
   </div>
 }
 
