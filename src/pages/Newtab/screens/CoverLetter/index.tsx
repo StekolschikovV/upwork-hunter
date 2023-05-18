@@ -30,7 +30,7 @@ const CoverLetter = observer(() => {
     <ControlsContainer>
       <Btn title="Create" onClick={e => { }} />
       <Btn title="Save" onClick={e => { }} />
-      <Btn title="Delete" onClick={e => { }} />
+      <Btn title="Delete" color="red" onClick={e => { }} />
     </ControlsContainer>
   </div>
 
