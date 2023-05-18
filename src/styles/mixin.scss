@@ -1,0 +1,15 @@
+@import "./const.scss";
+
+@mixin input {
+  display: grid;
+  border: 1px solid $color-grey;
+  border-radius: 5px;
+  padding: 10px 10px;
+  transition: 0.3s;
+
+  &:active,
+  &:focus {
+    border: 1px solid $color-dark-grey;
+    outline: none;
+  }
+}
