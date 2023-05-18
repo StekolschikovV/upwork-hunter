@@ -1,5 +1,6 @@
 // import {AccountStore} from "stores/AccountStore";
 
+import { CoverLetterStore } from "./CoverLetterStore";
 import { FeedStore } from "./FeedStore";
 
 // import {LangStore} from "stores/LangStore";
@@ -15,9 +16,11 @@ export type RootStoreHydration = {
 export class RootStore {
 
     feedStore: FeedStore;
+    coverLetterStore: CoverLetterStore;
 
     constructor() {
         this.feedStore = new FeedStore(this);
+        this.coverLetterStore = new CoverLetterStore(this);
     }
     
 }
