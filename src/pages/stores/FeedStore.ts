@@ -2,9 +2,6 @@ import { makeAutoObservable, reaction, runInAction } from "mobx";
 import xml2jsonES from 'xml2json-es';
 import { IJob } from "../Newtab/type";
 import { RootStore } from "./RootStore";
-const axios = require('axios');
-
-
 
 export class FeedStore {
 
@@ -30,6 +27,9 @@ export class FeedStore {
     }
 
     refresh = () => {
+        setInterval(() => {
+            console.log('!!!', this.feed);
+        }, 1000)
         setInterval(() => {
             if (this.refreshTimer === 0) {
                 this.refreshTimer = this.refreshTime

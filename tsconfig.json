@@ -14,11 +14,12 @@
     "resolveJsonModule": true,
     "noEmit": false,
     "jsx": "react",
+    "importHelpers": true,
     "plugins": [
       {
         "name": "typescript-plugin-css-modules"
       }
-    ],
+    ]
   },
 
   "include": ["src"],
