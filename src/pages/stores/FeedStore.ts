@@ -28,9 +28,6 @@ export class FeedStore {
 
     refresh = () => {
         setInterval(() => {
-            console.log('!!!', this.feed);
-        }, 1000)
-        setInterval(() => {
             if (this.refreshTimer === 0) {
                 this.refreshTimer = this.refreshTime
                 this.getJobs()
@@ -114,27 +111,23 @@ export class FeedStore {
         this.feedList = this.feedList.filter(e => e !== url)
     }
 
-    private save = () => {
-        localStorage.setItem("refreshTime", `${this.refreshTime}`)
-        localStorage.setItem("refreshTimer", `${this.refreshTimer}`)
-        localStorage.setItem("showJobs", `${this.showJobs}`)
-        localStorage.setItem("feedList", `${JSON.stringify(this.feedList)}`)
-        localStorage.setItem("feed", `${JSON.stringify(this.feed.slice(0, 10))}`)
-
+    private save = async () => {
+        await chrome.storage.sync.set({
+            feed: `${JSON.stringify(this.feed.slice(0, 10))}`,
+            feedList: `${JSON.stringify(this.feedList)}`,
+            showJobs: `${this.showJobs}`,
+            refreshTimer: `${this.refreshTimer}`,
+            refreshTime: `${this.refreshTime}`
+        });
     }
 
-    private load = () => {
-        this.refreshTime = +`${localStorage.getItem("refreshTime")}` || 30
-        this.refreshTimer = +`${localStorage.getItem("refreshTimer")}` || 30
-        this.showJobs = +`${localStorage.getItem("showJobs")}` || 10
-        const feedListStr = localStorage.getItem("feedList")
-        if (feedListStr) {
-            this.feedList = JSON.parse(feedListStr)
-        }
-        const feedStr = localStorage.getItem("feedList")
-        if (feedStr) {
-            this.feed = JSON.parse(feedStr)
-        }
+    private load = async () => {
+        const { feed, feedList, showJobs, refreshTimer, refreshTime } =
+            await chrome.storage.sync.get(["feed", "feedList", "showJobs", "refreshTimer"]);
+        this.feed = feed ? JSON.parse(feed) : []
+        this.feedList = feedList ? JSON.parse(feedList) : []
+        this.refreshTimer = refreshTimer || 30
+        this.showJobs = showJobs || 10
         this.getJobs()
     }
 

@@ -14,8 +14,6 @@ const SVG = ({ type, size = "20", color = "#001E00", hoveColor = "#001E00", onCl
   const [hoverStatus, setHoverStatus] = useState(false)
   const c = !hoverStatus ? color : hoveColor
 
-  console.log('+++', type);
-
   if (type === "sort")
     return <svg
       onClick={onClickHandler}

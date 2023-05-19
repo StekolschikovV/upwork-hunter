@@ -44,15 +44,15 @@ export class CoverLetterStore {
     this.save()
   }
 
-  private save = () => {
-    localStorage.setItem("coverLetters", `${JSON.stringify(this.coverLetters)}`)
+  private save = async () => {
+    await chrome.storage.sync.set({
+      coverLetters: JSON.stringify(this.coverLetters)
+    });
   }
 
-  private load = () => {
-    const coverLettersStr = localStorage.getItem("coverLetters")
-    if (coverLettersStr) {
-      this.coverLetters = JSON.parse(coverLettersStr)
-    }
+  private load = async () => {
+    const { coverLetters } = await chrome.storage.sync.get(["coverLetters"]);
+    this.coverLetters = coverLetters ? JSON.parse(coverLetters) : []
   }
 
 
