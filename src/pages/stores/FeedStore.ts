@@ -65,7 +65,8 @@ export class FeedStore {
                                             const content = att?.content
                                             if (type && content) {
                                                 // @ts-ignore
-                                                result[type?.toLowerCase()] = content[0]
+                                                // result[type?.toLowerCase()] = `${content[0]}`
+                                                result[type?.toLowerCase()] = `${content[0]}`.replaceAll("- Upwork", "")
                                             }
                                             // @ts-ignore
                                             result.row = att
