@@ -1,0 +1,55 @@
+@import "../../../../styles/const.scss";
+@import "../../../../styles/mixin.scss";
+
+.container {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  padding: 40px 30px;
+}
+
+.tabs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  li {
+    font-size: 18px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.3s;
+
+    &:hover {
+      color: $color-green;
+    }
+  }
+}
+
+li.selectedTab {
+  color: $color-green;
+  border-bottom: 1px solid $color-green;
+}
+
+.content {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+  gap: 10px;
+
+  input {
+    @include input();
+  }
+
+  textarea {
+    @include input();
+  }
+}
+
+.controls {
+  background: red;
+}

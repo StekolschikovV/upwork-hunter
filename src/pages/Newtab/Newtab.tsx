@@ -5,6 +5,7 @@ import './Newtab.scss';
 import Menu from './components/Menu';
 import CoverLetter from './screens/CoverLetter';
 import Feed from './screens/Feed';
+import Note from "./screens/Note";
 import Settings from './screens/Settings';
 
 const Newtab = observer(() => {
@@ -23,6 +24,7 @@ const Newtab = observer(() => {
         <div className="content-container">
           {activePage === "Feed" && <Feed />}
           {activePage === "Cover Letter" && <CoverLetter />}
+          {activePage === "Note" && <Note />}
           {activePage === "Settings" && <Settings />}
         </div>
       </div>

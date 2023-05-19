@@ -1,9 +1,8 @@
 {
   "name": "upwork-hunter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Upwork job search assistant extension.",
   "license": "MIT",
-  
   "repository": {
     "type": "git",
     "url": "https://github.com/StekolschikovV/upwork-hunter.git"
