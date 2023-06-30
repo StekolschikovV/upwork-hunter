@@ -77,3 +77,32 @@ header {
   padding: 0;
   margin-bottom: 60px;
 }
+
+footer {
+  display: flex;
+  max-width: 1200px;
+  justify-content: space-between;
+  width: calc(100% - 40px);
+  margin: auto;
+  font-size: 14px;
+  color: $color-dark-grey;
+
+  div {
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+
+    li {
+      a {
+        text-decoration: none;
+        color: $color-dark-grey;
+
+      }
+    }
+  }
+}

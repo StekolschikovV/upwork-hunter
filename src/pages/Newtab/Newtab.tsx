@@ -31,6 +31,16 @@ const Newtab = observer(() => {
                 </div>
             </div>
         </div>
+        <div className="full-container">
+            <footer>
+                <div>Open Source, 2023</div>
+                <ul>
+                    <li><a href="https://github.com/StekolschikovV/upwork-hunter">GitHub</a></li>
+                    <li><a href="mailto:upworkhunterextension@gmail.com">upworkhunterextension@gmail.com</a>
+                    </li>
+                </ul>
+            </footer>
+        </div>
     </>);
 })
 
