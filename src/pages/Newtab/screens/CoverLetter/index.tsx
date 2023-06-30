@@ -71,6 +71,9 @@ const CoverLetter = observer(() => {
       }} />}
       {!!activeTab && <Btn title="Save" onClick={onChangeHandler} />}
       {!!activeTab && <Btn title="Delete" color="red" onClick={() => onDeleteHandler()} />}
+      <Btn
+          title={"test"}
+          onClick={async () => await store.coverLetterStore.test()}/>
     </ControlsContainer>
   </div>
 

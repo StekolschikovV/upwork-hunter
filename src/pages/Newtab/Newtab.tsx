@@ -7,10 +7,11 @@ import CoverLetter from './screens/CoverLetter';
 import Feed from './screens/Feed';
 import Note from "./screens/Note";
 import Settings from './screens/Settings';
+import ChatGPT from "./screens/ChatGPT";
 
 const Newtab = observer(() => {
 
-  const [activePage, setActivePage] = useState("Feed")
+  const [activePage, setActivePage] = useState("ChatGPT")
 
   return (<>
     <div className="full-container">
@@ -25,6 +26,7 @@ const Newtab = observer(() => {
           {activePage === "Feed" && <Feed />}
           {activePage === "Cover Letter" && <CoverLetter />}
           {activePage === "Note" && <Note />}
+          {activePage === "ChatGPT" && <ChatGPT />}
           {activePage === "Settings" && <Settings />}
         </div>
       </div>
