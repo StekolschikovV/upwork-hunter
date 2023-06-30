@@ -38,7 +38,7 @@ const ChatGPT = observer(() => {
         // setAskText(null)
         setAnswerText("Loading...")
         const response = await store.chatGPTStore.ask(selectedTab, askText)
-        setAnswerText(`${response}`)
+        response ? setAnswerText(`${response}`) : setAnswerText(null)
         console.log(response)
     }
 

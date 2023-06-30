@@ -1,7 +1,7 @@
-import { makeAutoObservable, reaction, runInAction } from "mobx";
+import {makeAutoObservable, reaction, runInAction} from "mobx";
 import xml2jsonES from 'xml2json-es';
-import { IJob } from "../Newtab/type";
-import { RootStore } from "./RootStore";
+import {IJob} from "../Newtab/type";
+import {RootStore} from "./RootStore";
 
 export class FeedStore {
 
@@ -86,7 +86,6 @@ export class FeedStore {
                         return []
                     })
             )
-
         )
         // @ts-ignore
         let result = data?.flat()?.sort((a: any, b: any) => Date.parse(new Date(a?.date)) - Date.parse(new Date(b?.date))).reverse()
@@ -117,13 +116,13 @@ export class FeedStore {
             feedList: `${JSON.stringify(this.feedList)}`,
             showJobs: `${this.showJobs}`,
             refreshTimer: `${this.refreshTimer}`,
-            refreshTime: `${this.refreshTime}`
+            refreshTime: `${this.refreshTime}`,
         });
     }
 
     private load = async () => {
-        const { feed, feedList, showJobs, refreshTimer, refreshTime } =
-            await chrome.storage.sync.get(["feed", "feedList", "showJobs", "refreshTimer"]);
+        const {feed, feedList, showJobs, refreshTimer} =
+            await chrome.storage.sync.get(["feed", "feedList", "showJobs", "refreshTimer", "chatGPTKey"]);
         this.feed = feed ? JSON.parse(feed) : []
         this.feedList = feedList ? JSON.parse(feedList) : []
         this.refreshTimer = refreshTimer || 30

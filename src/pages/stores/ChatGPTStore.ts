@@ -1,18 +1,34 @@
-import {makeAutoObservable} from "mobx";
+import {makeAutoObservable, reaction} from "mobx";
 import {RootStore} from "./RootStore";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 export class ChatGPTStore {
 
     root: RootStore;
+    key: string | null = null
 
     constructor(root: RootStore) {
         this.root = root;
         makeAutoObservable(this)
+        this.load()
+        reaction(
+            () => [this.key],
+            () => {
+                this.save()
+            }
+        )
     }
 
     ask = async (type: string, text: string | null) => {
-        if (text === null) return false
+        if (this.key === null) {
+            toast("ChatGPT key is not specified!")
+            return false
+        }
+        if (text === null) {
+            toast("The text is not specified!")
+            return false
+        }
         try {
             const response = await axios.post('https://api.openai.com/v1/chat/completions', {
                 model: 'gpt-3.5-turbo', // Specify the model you want to use
@@ -20,12 +36,13 @@ export class ChatGPTStore {
             }, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer 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', // Замените YOUR_API_KEY на ваш ключ API
+                    'Authorization': `Bearer ${this.key}`,
                 },
             });
             return response.data.choices[0].message.content;
         } catch (error) {
             console.error(error);
+            toast(`Check your ChatGPT key and internet connection.`)
             return false;
         }
     }
@@ -61,5 +78,14 @@ export class ChatGPTStore {
         }
     }
 
+    private save = async () => {
+        await chrome.storage.sync.set({
+            key: `${this.key}`,
+        });
+    }
 
+    private load = async () => {
+        const {key} = await chrome.storage.sync.get(["key"]);
+        this.key = key || null
+    }
 }
