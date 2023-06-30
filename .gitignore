@@ -25,3 +25,6 @@ secrets.*.js
 
 .vscode
 
+.idea/
+.idea/*
+.idea
