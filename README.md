@@ -1,5 +1,7 @@
 # Upwork Hunter
 
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 ## Description
 
 Upwork Hunter is an open source project that aims to assist developers in finding job opportunities on Upwork, a popular
